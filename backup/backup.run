@@ -23,7 +23,7 @@ backup() {
     tar -czvf "backup_${date_str}.tar.gz" distfeeds.conf packages-list.txt overlay_backup.tar.gz
     # 清理临时文件
     rm -rf distfeeds.conf packages-list.txt overlay_backup.tar.gz
-    green "系统备份文件已保存至 $backup_path/backup.tar.gz"
+    green "系统备份文件已保存至 $backup_path/"backup_${date_str}.tar.gz""
     light_magenta "请及时下载保存到电脑 供恢复时使用"
 }
 
