@@ -7,6 +7,9 @@ light_magenta() { echo -e "\033[95m\033[01m[NOTICE] $1\033[0m"; }
 light_yellow() { echo -e "\033[93m\033[01m[NOTICE] $1\033[0m"; }
 
 backup() {
+
+        # 获取当前日期并格式化为年月日形式
+    local date_str=$(date +'%Y%m%d')
     # 检查是否传入自定义路径
     local backup_path=${1:-/tmp/upload}
     mkdir -p "$backup_path"
@@ -17,7 +20,7 @@ backup() {
     opkg list-installed > packages-list.txt
     tar -czvf overlay_backup.tar.gz /overlay
     # 将所有备份打包成一个文件
-    tar -czvf backup.tar.gz distfeeds.conf packages-list.txt overlay_backup.tar.gz
+    tar -czvf "backup_${date_str}.tar.gz" distfeeds.conf packages-list.txt overlay_backup.tar.gz
     # 清理临时文件
     rm -rf distfeeds.conf packages-list.txt overlay_backup.tar.gz
     green "系统备份文件已保存至 $backup_path/backup.tar.gz"
